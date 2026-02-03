@@ -1,0 +1,91 @@
+import { createTheme, type Theme } from '@mui/material/styles';
+
+// Светлая тема
+export const lightTheme = createTheme({
+    palette: {
+        mode: 'light',
+        primary: {
+            main: '#1976d2', // синий
+        },
+        secondary: {
+            main: '#dc004e', // розовый
+        },
+        background: {
+            default: '#f5f5f5',
+            paper: '#ffffff',
+        },
+        text: {
+            primary: 'rgba(0, 0, 0, 0.87)',
+            secondary: 'rgba(0, 0, 0, 0.6)',
+        },
+    },
+    typography: {
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    },
+    shape: {
+        borderRadius: 8,
+    },
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                ':root': {
+                    '--link-color': '#1f2937',
+                    '--link-hover-color': '#646cff',
+                    '--link-active': '#1a1a1a',
+                    '--link-active-bg': '#e5e7eb',
+                    '--appbar-bg': '#ececec',
+                    '--span-color': '#9ca3af'
+                },
+            },
+        },
+    },
+
+});
+
+// Темная тема
+export const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary: {
+            main: '#90caf9', // светлый синий
+        },
+        secondary: {
+            main: '#f48fb1', // светлый розовый
+        },
+        background: {
+            default: '#0b1120',
+            paper: '#1e293b',
+        },
+        text: {
+            primary: '#ffffff',
+            secondary: 'rgba(255, 255, 255, 0.7)',
+        },
+
+
+    },
+    typography: {
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    },
+    shape: {
+        borderRadius: 8,
+    },
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                ':root': {
+                    '--link-color': '#f8fafc',
+                    '--link-hover-color': '#4f46e5',
+                    '--link-active': '#f8fafc',
+                    '--link-active-bg': '#1f2b40',
+                    '--appbar-bg': '#141c2c',
+                    '--span-color': '#9ca3af'
+                },
+            },
+        },
+    },
+});
+
+// Функция для получения темы по режиму
+export const getTheme = (mode: 'light' | 'dark'): Theme => {
+    return mode === 'light' ? lightTheme : darkTheme;
+};

@@ -1,0 +1,11 @@
+.container {
+    background-color:var(--appbar-bg);
+    height: 70px;
+    padding: 16px 124px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.color {
+    color: #4b5563
+}

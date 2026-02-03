@@ -1,0 +1,11 @@
+.layout {
+    max-width: 1186px;
+    margin: 0 auto 200px;
+    flex: 1;
+}
+.app {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+}
