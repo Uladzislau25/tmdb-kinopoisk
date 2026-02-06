@@ -47,7 +47,17 @@ export const moviesApi = createApi({
                 },
             }),
         }),
+        getNowPlayingMovies: build.query<SearchResponse, void>({
+            query: () => ({
+                url: "movie/now_playing",
+                params: {
+                    api_key: import.meta.env.VITE_API_KEY,
+                    language: "en-US",
+                    page: 1,
+                },
+            }),
+        }),
     }),
 });
 
-export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery}= moviesApi;
+export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery, useGetNowPlayingMoviesQuery}= moviesApi;

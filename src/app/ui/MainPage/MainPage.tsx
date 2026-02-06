@@ -6,6 +6,7 @@ import {PopularMovie} from "@/features/movies/ui/CategoryMovies/PopularMovie/Pop
 import {SectionTitle} from "@/common/components/SectionTitle/SectionTitle.tsx";
 import {TopRatedMovies} from "@/features/movies/ui/CategoryMovies/TopRatedMovies/TopRatedMovies.tsx";
 import {UpcomingMovie} from "@/features/movies/ui/CategoryMovies/UpcomingMovie/UpcomingMovie.tsx";
+import {NowPlayingMovies} from "@/features/movies/ui/CategoryMovies/NowPlayingMovies/NowPlayingMovies.tsx";
 export const MainPage = () => {
     const {data} = useGetPopularMoviesQuery()
     const randomMovie = useMemo(() => {
@@ -43,6 +44,12 @@ export const MainPage = () => {
                 <SectionTitle title={"Upcoming Movies"} />
                 <div className={s.box}>
                     <UpcomingMovie/>
+                </div>
+            </section>
+            <section className={s.section}>
+                <SectionTitle title={"Now Playing Movies"} />
+                <div className={s.box}>
+                    <NowPlayingMovies/>
                 </div>
             </section>
         </>
