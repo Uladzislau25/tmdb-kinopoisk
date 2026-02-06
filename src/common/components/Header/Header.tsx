@@ -6,7 +6,6 @@ import {useAppDispatch, useAppSelector} from "@/common/hooks";
 import Switch from "@mui/material/Switch";
 import logo from '@/assets/image/blue_short.svg'
 
-
 const navItems = [
     {to: Path.Main, label: 'Main'},
     {to: Path.Category, label: 'Category'},

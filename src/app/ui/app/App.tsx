@@ -4,9 +4,9 @@ import { Routing } from "@/common/routing"
 import s from "./App.module.css"
 import {useAppSelector} from "@/common/hooks";
 import {getTheme} from "@/common/theme/theme.ts";
-import {Header} from "@/common/components/Header/Header.tsx";
 import {CssBaseline} from "@mui/material";
-import {Footer} from "@/common/components/Footer";
+import {Footer} from "@/common/components";
+import {Header} from "@/common/components/Header/Header.tsx";
 
 
 export const App = () => {
