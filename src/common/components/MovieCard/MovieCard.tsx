@@ -8,9 +8,10 @@ const placeholder = "https://placehold.co/300x450?text=No+Poster";
 type Props ={
     movie: Movie
     onClick?: (movie: Movie) => void;
+    width?: number;
 }
 
-export const MovieCard = ({ movie, onClick }: Props) => {
+export const MovieCard = ({ movie, onClick, width=220 }: Props) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const handleClick = () => {
@@ -25,6 +26,7 @@ export const MovieCard = ({ movie, onClick }: Props) => {
         <div
             className={s.wrapper}
             onClick={handleClick}
+            style={{width: `${width}px`}}
         >
             {/* Постер */}
             <div className={s.posterWrapper}>

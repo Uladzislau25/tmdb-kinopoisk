@@ -1,6 +1,8 @@
 .wrapper {
-    width: 220px;
+    max-width: 220px;
+    flex-shrink: 0;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 /* Блок с постером */

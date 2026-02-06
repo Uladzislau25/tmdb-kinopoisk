@@ -2,6 +2,8 @@ import {SearchBar} from "@/common/components";
 import s from './MainPage.module.css'
 import {useMemo} from "react";
 import {useGetPopularMoviesQuery} from "@/app/moviesApi.ts";
+import {PopularMovie} from "@/features/movies/ui/CategoryMovies/PopularMovie/PopularMovie.tsx";
+import {SectionTitle} from "@/common/components/SectionTitle/SectionTitle.tsx";
 export const MainPage = () => {
     const {data} = useGetPopularMoviesQuery()
     const randomMovie = useMemo(() => {
@@ -14,6 +16,7 @@ export const MainPage = () => {
         : ''
 
     return (
+        <>
        <div className={s.wrapper} style={{backgroundImage: `url(${backdropUrl})`}}>
            <div className={s.overlay}/>
                <div className={s.content}>
@@ -22,5 +25,12 @@ export const MainPage = () => {
                    <SearchBar/>
                </div>
        </div>
+        <section className={s.section}>
+            <SectionTitle title={"Popular Movies"} />
+           <div className={s.box}>
+               <PopularMovie/>
+           </div>
+        </section>
+        </>
     )
 }
