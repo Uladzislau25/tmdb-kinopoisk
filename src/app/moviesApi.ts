@@ -27,7 +27,27 @@ export const moviesApi = createApi({
                 },
             }),
         }),
+        getTopRatedMovies: build.query<SearchResponse, void>({
+            query: () => ({
+                url: "movie/top_rated",
+                params: {
+                    api_key: import.meta.env.VITE_API_KEY,
+                    language: "en-US",
+                    page: 1,
+                },
+            }),
+        }),
+        getUpcomingMovies: build.query<SearchResponse, void>({
+            query: () => ({
+                url: "movie/upcoming",
+                params: {
+                    api_key: import.meta.env.VITE_API_KEY,
+                    language: "en-US",
+                    page: 1,
+                },
+            }),
+        }),
     }),
 });
 
-export const {useGetPopularMoviesQuery, useSearchMoviesQuery}= moviesApi;
+export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery}= moviesApi;

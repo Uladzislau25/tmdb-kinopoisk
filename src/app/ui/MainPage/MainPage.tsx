@@ -4,6 +4,8 @@ import {useMemo} from "react";
 import {useGetPopularMoviesQuery} from "@/app/moviesApi.ts";
 import {PopularMovie} from "@/features/movies/ui/CategoryMovies/PopularMovie/PopularMovie.tsx";
 import {SectionTitle} from "@/common/components/SectionTitle/SectionTitle.tsx";
+import {TopRatedMovies} from "@/features/movies/ui/CategoryMovies/TopRatedMovies/TopRatedMovies.tsx";
+import {UpcomingMovie} from "@/features/movies/ui/CategoryMovies/UpcomingMovie/UpcomingMovie.tsx";
 export const MainPage = () => {
     const {data} = useGetPopularMoviesQuery()
     const randomMovie = useMemo(() => {
@@ -31,6 +33,18 @@ export const MainPage = () => {
                <PopularMovie/>
            </div>
         </section>
+            <section className={s.section}>
+                <SectionTitle title={"Top Rated Movies"} />
+                <div className={s.box}>
+                    <TopRatedMovies/>
+                </div>
+            </section>
+            <section className={s.section}>
+                <SectionTitle title={"Upcoming Movies"} />
+                <div className={s.box}>
+                    <UpcomingMovie/>
+                </div>
+            </section>
         </>
     )
 }
