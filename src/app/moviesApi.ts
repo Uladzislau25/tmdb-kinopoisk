@@ -57,7 +57,16 @@ export const moviesApi = createApi({
                 },
             }),
         }),
+        getMovies: build.query<SearchResponse,{ category: string; page: number }>({
+            query: ({category, page}) => ({
+                url: `/movie/${category}`,
+                params: {
+                    api_key: import.meta.env.VITE_API_KEY,
+                    page,
+                },
+            }),
+        }),
     }),
 });
 
-export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery, useGetNowPlayingMoviesQuery}= moviesApi;
+export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery, useGetNowPlayingMoviesQuery, useGetMoviesQuery}= moviesApi;

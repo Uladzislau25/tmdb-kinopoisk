@@ -5,10 +5,10 @@ export const lightTheme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: '#1976d2', // синий
+            main: '#1976d2',
         },
         secondary: {
-            main: '#dc004e', // розовый
+            main: '#dc004e',
         },
         background: {
             default: '#f5f5f5',
@@ -34,7 +34,9 @@ export const lightTheme = createTheme({
                     '--link-active': '#1a1a1a',
                     '--link-active-bg': '#e5e7eb',
                     '--appbar-bg': '#ececec',
-                    '--span-color': '#9ca3af'
+                    '--span-color': '#9ca3af',
+                    '--btn-color': "#e5e7eb",
+                    '--btn-border-color': '#d1d5db',
                 },
             },
         },
@@ -47,10 +49,10 @@ export const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: '#90caf9', // светлый синий
+            main: '#90caf9',
         },
         secondary: {
-            main: '#f48fb1', // светлый розовый
+            main: '#f48fb1',
         },
         background: {
             default: '#0b1120',
@@ -78,7 +80,9 @@ export const darkTheme = createTheme({
                     '--link-active': '#f8fafc',
                     '--link-active-bg': '#1f2b40',
                     '--appbar-bg': '#141c2c',
-                    '--span-color': '#9ca3af'
+                    '--span-color': '#9ca3af',
+                    '--btn-color': "#141c2c",
+                    '--btn-border-color': '#27354f',
                 },
             },
         },

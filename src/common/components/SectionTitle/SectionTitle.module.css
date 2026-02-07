@@ -8,6 +8,14 @@
     font-weight: 600;
 }
 .button {
-    width: 100px;
-    height: 30px;
+    text-decoration: none;
+    background-color: transparent;
+    padding: 6px 12px;
+    border: 1px solid var(--btn-border-color);
+    color: var(--link-color);
+    border-radius: 30px;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: var(--btn-color);
 }

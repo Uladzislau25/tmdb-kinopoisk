@@ -29,25 +29,25 @@ export const MainPage = () => {
                </div>
        </div>
         <section className={s.section}>
-            <SectionTitle title={"Popular Movies"} />
+            <SectionTitle title={"Popular Movies"} params={'popular'}/>
            <div className={s.box}>
                <PopularMovie/>
            </div>
         </section>
             <section className={s.section}>
-                <SectionTitle title={"Top Rated Movies"} />
+                <SectionTitle title={"Top Rated Movies"} params={'top_rated'}/>
                 <div className={s.box}>
                     <TopRatedMovies/>
                 </div>
             </section>
             <section className={s.section}>
-                <SectionTitle title={"Upcoming Movies"} />
+                <SectionTitle title={"Upcoming Movies"} params={'upcoming'}/>
                 <div className={s.box}>
                     <UpcomingMovie/>
                 </div>
             </section>
             <section className={s.section}>
-                <SectionTitle title={"Now Playing Movies"} />
+                <SectionTitle title={"Now Playing Movies"} params={'now_playing'}/>
                 <div className={s.box}>
                     <NowPlayingMovies/>
                 </div>

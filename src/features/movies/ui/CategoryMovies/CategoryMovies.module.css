@@ -1,0 +1,35 @@
+.wrapper {
+    padding: 0 124px;
+}
+.container {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.moviesGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 28px;
+    margin-top: 25px;
+}
+.btn {
+    line-height: 21px;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 30px;
+    border: 1px solid var(--btn-border-color);
+    color: var(--link-color);
+    cursor: pointer;
+}
+.active {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 30px;
+    border: 1px solid var(--btn-border-color);
+    color: #e5e7eb;
+    background-color: #2563eb;
+    cursor: pointer;
+}
