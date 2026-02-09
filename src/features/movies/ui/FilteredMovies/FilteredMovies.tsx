@@ -1,4 +1,4 @@
-import { useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {useDebounce} from "@/common/hooks/useDebounce.ts";
 import {useGetMoviesDiscoverQuery} from "@/app/moviesApi.ts";
 import {Pagination} from "@/common/components/Pagination/Pagination.tsx";
@@ -13,13 +13,17 @@ export const FilteredMovies = () => {
     const [genres, setGenres] = useState<number[]>([]);
     const [page, setPage] = useState<number>(1);
 
+    useEffect(() => {
+        setPage(1);
+    }, [sortBy, genres, rating]);
+
+
 
     const debouncedRating = useDebounce(rating, 200);
-    const isPopularitySort = sortBy.includes('popularity');
     const isTitleSort = sortBy.startsWith('title');
 
     const { data, isLoading } = useGetMoviesDiscoverQuery({
-        sort_by: sortBy,
+        sort_by: isTitleSort? 'popularity.desc': sortBy,
         'vote_average.gte': debouncedRating[0],
         'vote_average.lte': debouncedRating[1],
         with_genres: genres.join(','),
@@ -36,18 +40,9 @@ export const FilteredMovies = () => {
                     : b.title.localeCompare(a.title)
             );
         }
-        if (isPopularitySort) {
-            return [...data.results].sort((a, b) => {
-                if (sortBy === 'popularity.asc') {
-                    return a.popularity - b.popularity;
-                } else {
-                    return b.popularity - a.popularity;
-                }
-            });
-        }
         return data.results;
 
-    }, [data?.results, sortBy, isTitleSort, isPopularitySort]);
+    }, [data?.results, sortBy, isTitleSort]);
 
     const resetFilters = () => {
         setSortBy('popularity.desc');
