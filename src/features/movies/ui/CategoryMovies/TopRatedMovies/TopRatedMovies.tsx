@@ -23,7 +23,7 @@ export const TopRatedMovies = () => {
     return (
         <div ref={containerRef} className={s.container}>
             {movies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} width={180} />
+                <MovieCard key={movie.id} movie={movie} width={180} height={260} />
             ))}
         </div>
     );

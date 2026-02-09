@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import type {SearchMoviesParams, SearchResponse} from "@/app/moviesApi.types.ts";
+import type {GenresResponse, SearchMoviesParams, SearchResponse} from "@/app/moviesApi.types.ts";
 
 
 export const moviesApi = createApi({
@@ -66,7 +66,30 @@ export const moviesApi = createApi({
                 },
             }),
         }),
+        getMoviesDiscover: build.query<SearchResponse, {
+            sort_by: string;
+            'vote_average.gte'?: number;
+            'vote_average.lte'?: number;
+            with_genres?: string;
+            page?: number;
+        }>({
+            query: (params)=> ({
+                url: '/discover/movie',
+                params: {
+                    api_key: import.meta.env.VITE_API_KEY,
+                    ...params
+                }
+            })
+        }),
+        getGenres: build.query<GenresResponse, void>({
+            query: ()=>({
+                url: '/genre/movie/list',
+                params: {
+                    api_key: import.meta.env.VITE_API_KEY,
+                }
+            })
+        })
     }),
 });
 
-export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery, useGetNowPlayingMoviesQuery, useGetMoviesQuery}= moviesApi;
+export const {useGetPopularMoviesQuery, useSearchMoviesQuery , useGetTopRatedMoviesQuery, useGetUpcomingMoviesQuery, useGetNowPlayingMoviesQuery, useGetMoviesQuery, useGetGenresQuery, useGetMoviesDiscoverQuery}= moviesApi;

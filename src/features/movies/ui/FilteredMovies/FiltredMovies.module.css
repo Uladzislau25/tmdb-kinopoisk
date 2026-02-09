@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    gap: 24px;
+    padding: 30px 124px;
+}
+.box {
+    width: 100%;
+}
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    grid-auto-rows: auto;
+}

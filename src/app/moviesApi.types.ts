@@ -26,3 +26,12 @@ export type SearchMoviesParams = {
     query: string
     page?: number
 }
+
+export type Genre = {
+    id: number,
+    name: string,
+}
+
+export type GenresResponse = {
+    genres: Genre[]
+}
