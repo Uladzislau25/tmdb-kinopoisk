@@ -1,17 +1,9 @@
 import {useGetGenresQuery} from "@/app/moviesApi.ts";
 import type {Dispatch, SetStateAction} from "react";
 import {Rating} from "@/common/components/Rating/Rating.tsx";
+import {SortSelect} from "@/common/components/SortSelect/SortSelect.tsx";
+import s from './FiltredPanel.module.css'
 
-const SORT_OPTIONS = [
-{ label: 'Популярность ↓', value: 'popularity.desc' },
-{ label: 'Популярность ↑', value: 'popularity.asc' },
-{ label: 'Рейтинг ↓', value: 'vote_average.desc' },
-{ label: 'Рейтинг ↑', value: 'vote_average.asc' },
-{ label: 'Дата ↓', value: 'release_date.desc' },
-{ label: 'Дата ↑', value: 'release_date.asc' },
-{ label: 'Название A-Z', value: 'title.asc' },
-{ label: 'Название Z-A', value: 'title.desc' },
-];
 type Props = {
     sortBy: string;
     setSortBy: Dispatch<SetStateAction<string>>;
@@ -24,7 +16,6 @@ type Props = {
 
     resetFilters: ()=> void;
 }
-
 
 export const FiltersPanel = ({
                                  sortBy,
@@ -46,37 +37,25 @@ export const FiltersPanel = ({
 
 
     return (
-        <aside style={{width: 300}}>
-            <h3>Сортировка</h3>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                {SORT_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                    </option>
-                ))}
-            </select>
+        <aside className={s.sorted}>
+            <h3>Filters / Sort</h3>
+            <SortSelect value={sortBy} onChange={setSortBy}/>
             <Rating value={rating} onChange={setRating} />
 
-
-
-            <h3>Жанры</h3>
-            <div style={{display: 'flex', flexWrap: 'wrap', gap: 8}}>
+            <div className={s.containerBtn}>
                 {data?.genres.map((genre: any) => (
                     <button
                         key={genre.id}
                         onClick={() => toggleGenre(genre.id)}
-                        style={{
-                            background: genres.includes(genre.id) ? '#333' : '#eee',
-                            color: genres.includes(genre.id) ? '#fff' : '#000',
-                        }}
+                        className={`${s.genreBtn} ${genres.includes(genre.id) ? s.active : ''}`}
                     >
                         {genre.name}
                     </button>
                 ))}
             </div>
-
-
-            <button onClick={resetFilters}>Сбросить фильтры</button>
+           <div className={s.resetBtnContainer}>
+               <button onClick={resetFilters} className={s.btnReset}>Reset filters</button>
+           </div>
         </aside>
     );
 };
