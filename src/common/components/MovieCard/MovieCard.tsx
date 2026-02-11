@@ -22,10 +22,16 @@ export const MovieCard = ({ movie, onClick, width = 220, height = 330 }: Props) 
     e.stopPropagation()
     setIsFavorite((prev) => !prev)
   }
+  const rating = movie.vote_average ?? 0
+
+  const getRatingClass = () => {
+    if (rating >= 7) return s.high
+    if (rating >= 5) return s.medium
+    return s.low
+  }
 
   return (
     <div className={s.wrapper} onClick={handleClick} style={{ width: `${width}px` }}>
-      {/* Постер */}
       <div className={s.posterWrapper} style={{ height: `${height}px` }}>
         <img
           src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : placeholder}
@@ -33,16 +39,13 @@ export const MovieCard = ({ movie, onClick, width = 220, height = 330 }: Props) 
           className={s.poster}
         />
 
-        {/* Сердце */}
         <button className={isFavorite ? s.favoriteBtnActive : s.favoriteBtn} onClick={handleFavorite}>
           <span className={isFavorite ? s.heartActive : s.heart}>❤️</span>
         </button>
-
-        {/* Рейтинг */}
-        <div className={s.rating}>{movie.vote_average !== undefined ? movie.vote_average.toFixed(1) : "-"}</div>
+        <div className={`${s.rating} ${getRatingClass()}`}>
+          {movie.vote_average !== undefined ? movie.vote_average.toFixed(1) : "-"}
+        </div>
       </div>
-
-      {/* Название */}
       <p className={s.title}>{movie.title}</p>
     </div>
   )

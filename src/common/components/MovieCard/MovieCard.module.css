@@ -4,8 +4,6 @@
   cursor: pointer;
   box-sizing: border-box;
 }
-
-/* Блок с постером */
 .posterWrapper {
   position: relative;
   border-radius: 24px;
@@ -15,8 +13,6 @@
 .posterWrapper:hover .poster {
   transform: scale(1.1);
 }
-
-/* Картинка */
 .poster {
   width: 100%;
   height: 330px;
@@ -24,8 +20,6 @@
   display: block;
   transition: transform 0.4s ease;
 }
-
-/* Кнопка сердца */
 .favoriteBtn {
   position: absolute;
   top: 12px;
@@ -56,13 +50,10 @@
 .posterWrapper:hover .favoriteBtn {
   opacity: 1;
 }
-
-/* Сердце */
 .heart {
   font-size: 20px;
   opacity: 0.6;
 }
-
 .heartActive {
   font-size: 20px;
   opacity: 1;
@@ -90,7 +81,6 @@
   opacity: 1;
   filter: drop-shadow(0 0 5px #ff0000);
 }
-/* Рейтинг */
 .rating {
   position: absolute;
   right: 12px;
@@ -111,13 +101,19 @@
 
   color: #000;
 }
-
-/* Название */
+.high {
+    background-color: #16a34a; /* зелёный */
+}
+.medium {
+    background-color: #eab308; /* жёлтый */
+    color: black;
+}
+.low {
+    background-color: #dc2626; /* красный */
+}
 .title {
   margin-top: 10px;
-
   font-size: 16px;
   font-weight: 500;
-
   color: var(--link-active);
 }
