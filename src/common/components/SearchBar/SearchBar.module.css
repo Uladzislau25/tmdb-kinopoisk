@@ -1,65 +1,65 @@
 .searchBar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .input {
-    width: 380px;
-    height: 48px;
-    padding: 0 20px;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background: var(--appbar-bg);
-    color: var(--link-active);
+  width: 380px;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: var(--appbar-bg);
+  color: var(--link-active);
 }
 .searchWrapper {
-    position: relative;
-    border-radius: 30px;
-    background: var(--appbar-bg);
-    border: 2px solid transparent;
-    transition: 0.2s;
+  position: relative;
+  border-radius: 30px;
+  background: var(--appbar-bg);
+  border: 2px solid transparent;
+  transition: 0.2s;
 }
 .searchWrapper:focus-within {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
 }
 .clearBtn {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--link-active);
-    font-size: 22px;
-    cursor: pointer;
-    opacity: 0.7;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--link-active);
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .clearBtn:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .button {
-    height: 48px;
-    padding: 0 28px;
-    border-radius: 30px;
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.2s;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 30px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .button:hover:not(:disabled) {
-    background: #1d4ed8;
+  background: #1d4ed8;
 }
 .button:disabled {
-    background: #2563eb;
-    cursor: not-allowed;
-    opacity: 0.6;
+  background: #2563eb;
+  cursor: not-allowed;
+  opacity: 0.6;
 }

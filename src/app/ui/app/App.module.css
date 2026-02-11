@@ -1,9 +1,9 @@
 .layout {
-    flex: 1;
+  flex: 1;
 }
 .app {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
 }

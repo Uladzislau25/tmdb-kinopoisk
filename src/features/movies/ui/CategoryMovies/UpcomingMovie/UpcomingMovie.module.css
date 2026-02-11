@@ -1,4 +1,4 @@
 .container {
-    display: flex;
-    overflow: hidden;  /* скрываем лишние карточки */
+  display: flex;
+  overflow: hidden; /* скрываем лишние карточки */
 }

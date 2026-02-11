@@ -1,48 +1,46 @@
 .sorted {
-    display: flex;
-    flex-direction: column;
-   width: 30%;
-    padding: 0 15px;
-    background-color: var(--appbar-bg);
-    border-radius: 15px;
-    height: 670px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 0 15px;
+  background-color: var(--appbar-bg);
+  border-radius: 15px;
+  height: 33%;
 }
 
-.containerBtn {
-}
 .genreBtn {
-    background-color: var(--link-active-bg);
-    border-radius: 15px;
-    font-size: 14px;
-    padding: 6px 12px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    color: var(--link-color);
-    border: 1px solid var(--span-color);
-    cursor: pointer;
-
+  background-color: var(--link-active-bg);
+  border-radius: 15px;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: var(--link-color);
+  border: 1px solid var(--span-color);
+  cursor: pointer;
 }
 .genreBtn:hover {
-    background-color: transparent;
-    border: 1px solid #1d4ed8;
+  background-color: transparent;
+  border: 1px solid #1d4ed8;
 }
 .active {
-    background-color: #1d4ed8;
+  background-color: #1d4ed8;
 }
 .resetBtnContainer {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 .btnReset {
-    line-height: 21px;
-    font-weight: 600;
-    background-color: #4a90e2;
-    padding: 5px 10px;
-    border-radius: 30px;
-    border: 1px solid var(--btn-border-color);
-    color: #e5e7eb;
-    cursor: pointer;
+  line-height: 21px;
+  font-weight: 600;
+  background-color: #4a90e2;
+  padding: 5px 10px;
+  border-radius: 30px;
+  border: 1px solid var(--btn-border-color);
+  color: #e5e7eb;
+  cursor: pointer;
+  margin-bottom: 15px;
 }
 .btnReset:hover {
-    background-color: rgba(30, 76, 207, 0.72);
+  background-color: rgba(30, 76, 207, 0.72);
 }

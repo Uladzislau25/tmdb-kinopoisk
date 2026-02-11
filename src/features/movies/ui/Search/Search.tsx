@@ -1,53 +1,53 @@
-import {useSearchParams} from "react-router";
-import {useSearchMoviesQuery} from "@/app/moviesApi.ts";
-import {MovieCard, SearchBar} from "@/common/components";
-import s from './Search.module.css'
-
+import { useSearchParams } from "react-router"
+import { useSearchMoviesQuery } from "@/app/moviesApi.ts"
+import { MovieCard, SearchBar } from "@/common/components"
+import s from "./Search.module.css"
+import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
 
 export const Search = () => {
-    const [params] = useSearchParams()
+  const [params, setParams] = useSearchParams()
 
-    const query = (params.get('query') || '').trim()
-    const page = Number(params.get('page') || 1)
+  const query = (params.get("query") || "").trim()
+  const page = Number(params.get("page") || 1)
 
-    const { data, isLoading, isError } = useSearchMoviesQuery(
-        { query, page },
-        { skip: !query }
-    )
-    const movies = data?.results ?? []
-    return (
-        <div className={s.wrapper}>
-            <h2>Search Results</h2>
-            {/* Панель поиска */}
-            <SearchBar />
+  const { data, isLoading, isError } = useSearchMoviesQuery({ query, page }, { skip: !query })
+  const movies = data?.results ?? []
 
-            {/* Нет запроса */}
-            {!query && <p>Enter a movie title to start searching</p>}
+  const handlePageChange = (newPage: number) => {
+    setParams({
+      query,
+      page: String(newPage),
+    })
+  }
+  return (
+    <div className={s.wrapper}>
+      <h2>Search Results</h2>
 
-            {/* Загрузка */}
-            {isLoading && <p>Loading...</p>}
+      <SearchBar />
 
-            {/* Ошибка */}
-            {isError && <p>Error loading movies</p>}
+      {!query && <p>Enter a movie title to start searching</p>}
 
-            {/* Нет результатов */}
-            {query && data?.results.length === 0 && (
-                <p>No matches found for: {query}</p>
-            )}
+      {isLoading && <p>Loading...</p>}
 
-            {/* Результаты */}
-            {!query || movies.length > 0 && (
-                <>
-                    <h2>Results: {query}</h2>
+      {isError && <p>Error loading movies</p>}
 
-                    <div className={s.moviesGrid}>
-                        {movies.map((movie) => (
-                          <MovieCard movie={movie}/>
-                        ))}
-                    </div>
+      {query && data?.results.length === 0 && <p>No matches found for: {query}</p>}
 
-                </>
-            )}
-        </div>
-    )
+      {!query ||
+        (movies.length > 0 && (
+          <>
+            <h2>Results: {query}</h2>
+
+            <div className={s.moviesGrid}>
+              {movies.map((movie) => (
+                <MovieCard movie={movie} />
+              ))}
+            </div>
+          </>
+        ))}
+
+      {!query ||
+        (movies.length > 0 && <Pagination page={page} totalPages={data?.total_pages} onChange={handlePageChange} />)}
+    </div>
+  )
 }

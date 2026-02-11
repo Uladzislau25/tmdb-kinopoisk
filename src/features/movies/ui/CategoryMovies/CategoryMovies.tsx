@@ -1,119 +1,104 @@
-import { useSearchParams } from "react-router";
-import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router"
+import { useEffect, useRef, useState } from "react"
 
-import { useGetMoviesQuery } from "@/app/moviesApi";
-import { MovieCard } from "@/common/components";
+import { useGetMoviesQuery } from "@/app/moviesApi"
+import { MovieCard } from "@/common/components"
 
-import s from "./CategoryMovies.module.css";
-import type {Movie} from "@/app/moviesApi.types.ts";
+import s from "./CategoryMovies.module.css"
+import type { Movie } from "@/app/moviesApi.types.ts"
 
 const categories = [
-    { key: "popular", label: "Popular Movies" },
-    { key: "top_rated", label: "Top Rated Movies" },
-    { key: "upcoming", label: "Upcoming Movies" },
-    { key: "now_playing", label: "Now Playing Movies" },
-];
+  { key: "popular", label: "Popular Movies" },
+  { key: "top_rated", label: "Top Rated Movies" },
+  { key: "upcoming", label: "Upcoming Movies" },
+  { key: "now_playing", label: "Now Playing Movies" },
+]
 
 export const CategoryMovies = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
 
-    const type = searchParams.get("type") || "popular";
+  const type = searchParams.get("type") || "popular"
 
-    const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
 
-    const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([])
 
-    const loaderRef = useRef<HTMLDivElement | null>(null);
+  const loaderRef = useRef<HTMLDivElement | null>(null)
 
-    const {
-        data,
-        isLoading,
-        isFetching,
-        isError,
-    } = useGetMoviesQuery({
-        category: type,
-        page,
-    });
+  const { data, isLoading, isFetching, isError } = useGetMoviesQuery({
+    category: type,
+    page,
+  })
 
-    useEffect(() => {
-        setPage(1);
-        setMovies([]);
+  useEffect(() => {
+    setPage(1)
+    setMovies([])
 
-        setSearchParams({
-            type,
-        });
-    }, [type]);
+    setSearchParams({
+      type,
+    })
+  }, [type])
 
-    useEffect(() => {
-        if (data?.results) {
-            setMovies((prev) => [...prev, ...data.results]);
+  useEffect(() => {
+    if (data?.results) {
+      setMovies((prev) => [...prev, ...data.results])
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (!loaderRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !isFetching && page < (data?.total_pages || 1)) {
+          setPage((prev) => prev + 1)
         }
-    }, [data]);
+      },
+      {
+        rootMargin: "200px",
+      },
+    )
 
-    useEffect(() => {
-        if (!loaderRef.current) return;
+    observer.observe(loaderRef.current)
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (
-                    entries[0].isIntersecting &&
-                    !isFetching &&
-                    page < (data?.total_pages || 1)
-                ) {
-                    setPage((prev) => prev + 1);
-                }
-            },
-            {
-                rootMargin: "200px",
-            }
-        );
+    return () => observer.disconnect()
+  }, [isFetching, data, page])
 
-        observer.observe(loaderRef.current);
+  const handleCategoryChange = (newType: string) => {
+    setSearchParams({
+      type: newType,
+    })
+  }
 
-        return () => observer.disconnect();
-    }, [isFetching, data, page]);
+  const activeCategory = categories.find((c) => c.key === type)
 
-    const handleCategoryChange = (newType: string) => {
-        setSearchParams({
-            type: newType,
-        });
-    };
+  return (
+    <div className={s.wrapper}>
+      <div className={s.container}>
+        {categories.map((cat) => (
+          <button
+            key={cat.key}
+            onClick={() => handleCategoryChange(cat.key)}
+            className={cat.key === type ? s.active : s.btn}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
 
-    const activeCategory = categories.find(
-        (c) => c.key === type
-    );
+      <h2>{activeCategory?.label}</h2>
 
-    return (
-        <div className={s.wrapper}>
-            <div className={s.container}>
-                {categories.map((cat) => (
-                    <button
-                        key={cat.key}
-                        onClick={() => handleCategoryChange(cat.key)}
-                        className={
-                            cat.key === type ? s.active : s.btn
-                        }
-                    >
-                        {cat.label}
-                    </button>
-                ))}
-            </div>
+      {isError && <p>Error...</p>}
 
-            <h2>{activeCategory?.label}</h2>
+      <div className={s.moviesGrid}>
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
 
-            {isError && <p>Error...</p>}
+      <div ref={loaderRef} />
 
-            <div className={s.moviesGrid}>
-                {movies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
-                ))}
-            </div>
-
-            <div ref={loaderRef}/>
-
-            {(isLoading || isFetching) && (
-                <p>Loading...</p>
-            )}
-        </div>
-    );
-};
+      {(isLoading || isFetching) && <p>Loading...</p>}
+    </div>
+  )
+}

@@ -1,37 +1,36 @@
 export type Movie = {
-    adult: boolean;
-    backdrop_path: string | null;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string | null;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
+  adult: boolean
+  backdrop_path: string | null
+  genre_ids: number[]
+  id: number
+  original_language: string
+  original_title: string
+  overview: string
+  popularity: number
+  poster_path: string | null
+  release_date: string
+  title: string
+  video: boolean
+  vote_average: number
+  vote_count: number
 }
-
 
 export type SearchResponse = {
-    page: number
-    results: Movie[]
-    total_pages: number
-    total_results: number
+  page: number
+  results: Movie[]
+  total_pages: number
+  total_results: number
 }
 export type SearchMoviesParams = {
-    query: string
-    page?: number
+  query: string
+  page?: number
 }
 
 export type Genre = {
-    id: number,
-    name: string,
+  id: number
+  name: string
 }
 
 export type GenresResponse = {
-    genres: Genre[]
+  genres: Genre[]
 }

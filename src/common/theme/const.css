@@ -1,11 +1,11 @@
 :root {
---link-color: '#1f2937';
---link-hover-color: '646cff';
---link-active: '#1a1a1a';
---link-active-bg: '#e5e7eb';
---appbar-bg: '#ececec';
---span-color: '#9ca3af';
---btn-color: "#e5e7eb";
---btn-border-color: '#d1d5db';
-    --rating-color: '#4b5563';
+  --link-color: "#1f2937";
+  --link-hover-color: "646cff";
+  --link-active: "#1a1a1a";
+  --link-active-bg: "#e5e7eb";
+  --appbar-bg: "#ececec";
+  --span-color: "#9ca3af";
+  --btn-color: "#e5e7eb";
+  --btn-border-color: "#d1d5db";
+  --rating-color: "#4b5563";
 }

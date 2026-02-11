@@ -1,13 +1,19 @@
-
+import s from "./Pagination.module.css"
 type Props = {
-    page: number;
-    totalPages?: number;
-    onChange: (page: number) => void;
+  page: number
+  totalPages?: number | undefined
+  onChange: (page: number) => void
 }
 export const Pagination = ({ page, totalPages = 1, onChange }: Props) => (
-    <div style={{ marginTop: 24 }}>
-        <button disabled={page === 1} onClick={() => onChange(page - 1)}>Назад</button>
-        <span style={{ margin: '0 12px' }}>{page}/{totalPages}</span>
-        <button disabled={page === totalPages} onClick={() => onChange(page + 1)}>Вперёд</button>
-    </div>
-);
+  <div className={s.container}>
+    <button className={s.btn} disabled={page === 1} onClick={() => onChange(page - 1)}>
+      Назад
+    </button>
+    <span>
+      {page}/{totalPages}
+    </span>
+    <button className={s.btn} disabled={page === totalPages} onClick={() => onChange(page + 1)}>
+      Вперёд
+    </button>
+  </div>
+)

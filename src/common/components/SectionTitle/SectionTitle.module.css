@@ -1,21 +1,21 @@
 .content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .title {
-    font-size: 24px;
-    font-weight: 600;
+  font-size: 24px;
+  font-weight: 600;
 }
 .button {
-    text-decoration: none;
-    background-color: transparent;
-    padding: 6px 12px;
-    border: 1px solid var(--btn-border-color);
-    color: var(--link-color);
-    border-radius: 30px;
-    cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  padding: 6px 12px;
+  border: 1px solid var(--btn-border-color);
+  color: var(--link-color);
+  border-radius: 30px;
+  cursor: pointer;
 }
 .button:hover {
-    background-color: var(--btn-color);
+  background-color: var(--btn-color);
 }
