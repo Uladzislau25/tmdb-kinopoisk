@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { GenresResponse, SearchMoviesParams, SearchResponse } from "@/app/moviesApi.types.ts"
 import { AUTH_TOKEN, BASE_URL } from "@/common/constants"
-import { errorToast } from "@/common/utils/errorToast.ts"
+import { handleErrors } from "@/common/utils/henldeErrors.ts"
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -14,21 +14,7 @@ export const moviesApi = createApi({
       },
     })(args, api, extraOptions)
     if (result.error) {
-      switch (result.error.status) {
-        case "FETCH_ERROR":
-        case "PARSING_ERROR":
-        case "CUSTOM_ERROR":
-        case "TIMEOUT_ERROR":
-          errorToast(result.error.status)
-          break
-        case 401:
-        case 404:
-          console.log(result.error.data)
-          errorToast((result.error.data as { status_message: string }).status_message)
-          break
-        default:
-          errorToast("Some error occurred")
-      }
+      handleErrors(result.error)
     }
     return result
   },
@@ -56,7 +42,7 @@ export const moviesApi = createApi({
     }),
     getMovies: build.query<SearchResponse, { category: string; page: number }>({
       query: ({ category, page }) => ({
-        url: `/movie1/${category}`,
+        url: `/movie/${category}`,
         params: {
           page,
         },
