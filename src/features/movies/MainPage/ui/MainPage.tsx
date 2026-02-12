@@ -1,19 +1,22 @@
 import { SearchBar } from "@/common/components"
 import s from "./MainPage.module.css"
 import { useMemo } from "react"
-import { useGetPopularMoviesQuery } from "@/app/moviesApi.ts"
-import { PopularMovie } from "@/features/movies/ui/CategoryMovies/PopularMovie/PopularMovie.tsx"
+import { PopularMovie } from "@/features/movies/CategoryMovies/ui/PopularMovie/PopularMovie.tsx"
 import { SectionTitle } from "@/common/components/SectionTitle/SectionTitle.tsx"
-import { TopRatedMovies } from "@/features/movies/ui/CategoryMovies/TopRatedMovies/TopRatedMovies.tsx"
-import { UpcomingMovie } from "@/features/movies/ui/CategoryMovies/UpcomingMovie/UpcomingMovie.tsx"
-import { NowPlayingMovies } from "@/features/movies/ui/CategoryMovies/NowPlayingMovies/NowPlayingMovies.tsx"
+import { TopRatedMovies } from "@/features/movies/CategoryMovies/ui/TopRatedMovies/TopRatedMovies.tsx"
+import { UpcomingMovie } from "@/features/movies/CategoryMovies/ui/UpcomingMovie/UpcomingMovie.tsx"
+import { NowPlayingMovies } from "@/features/movies/CategoryMovies/ui/NowPlayingMovies/NowPlayingMovies.tsx"
+import { useGetPopularMoviesQuery } from "@/features/movies/MainPage/api/mainApi.ts"
+
 export const MainPage = () => {
   const { data } = useGetPopularMoviesQuery()
+
   const randomMovie = useMemo(() => {
     if (!data?.results.length) return null
     const index = Math.floor(Math.random() * data.results.length)
     return data.results[index]
   }, [data])
+
   const backdropUrl = randomMovie?.backdrop_path
     ? `https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`
     : ""

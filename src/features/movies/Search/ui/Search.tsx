@@ -1,8 +1,9 @@
 import { useSearchParams } from "react-router"
-import { useSearchMoviesQuery } from "@/app/moviesApi.ts"
+
 import { MovieCard, SearchBar } from "@/common/components"
 import s from "./Search.module.css"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
+import { useSearchMoviesQuery } from "@/features/movies/Search/api/searchApi.ts"
 
 export const Search = () => {
   const [params, setParams] = useSearchParams()

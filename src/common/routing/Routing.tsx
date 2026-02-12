@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router"
-import { MainPage } from "@/features/movies/ui/MainPage/MainPage.tsx"
-import { CategoryMovies } from "@/features/movies/ui/CategoryMovies/CategoryMovies.tsx"
-import { FilteredMovies } from "@/features/movies/ui/FilteredMovies/FilteredMovies.tsx"
-import { Search } from "@/features/movies/ui/Search/Search.tsx"
-import { Favorites } from "@/features/movies/ui/Favorites/Favorites.tsx"
+import { MainPage } from "@/features/movies/MainPage/ui/MainPage.tsx"
+import { CategoryMovies } from "@/features/movies/CategoryMovies/ui/CategoryMovies.tsx"
+import { FilteredMovies } from "@/features/movies/FilteredMovies/ui/FilteredMovies.tsx"
+import { Search } from "@/features/movies/Search/ui/Search.tsx"
+import { Favorites } from "@/features/movies/Favorites/Favorites.tsx"
 
 export const Path = {
   Main: "/",

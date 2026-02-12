@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react"
 import { useDebounce } from "@/common/hooks/useDebounce.ts"
-import { useGetMoviesDiscoverQuery } from "@/app/moviesApi.ts"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
 import { MovieCard } from "@/common/components"
-import { FiltersPanel } from "@/features/movies/ui/FilteredMovies/FiltredPanel/FiltredPanel.tsx"
+import { FiltersPanel } from "@/features/movies/FilteredMovies/ui/FiltredPanel/FiltredPanel.tsx"
 import type { Movie } from "@/app/moviesApi.types.ts"
 import s from "./FiltredMovies.module.css"
+import { useGetMoviesDiscoverQuery } from "@/features/movies/FilteredMovies/api/filtredApi.ts"
 
 export const FilteredMovies = () => {
   const [sortBy, setSortBy] = useState<string>("popularity.desc")

@@ -1,24 +1,24 @@
-import { useGetPopularMoviesQuery } from "@/app/moviesApi.ts"
 import { MovieCard, updateVisibleCards } from "@/common/components"
-import s from "./PopularMovie.module.css"
+import s from "./NowPlayingMovies.module.css"
 import { useEffect, useRef } from "react"
+import { useGetNowPlayingMoviesQuery } from "@/features/movies/MainPage/api/mainApi.ts"
 
-export const PopularMovie = () => {
-  const { data } = useGetPopularMoviesQuery()
+export const NowPlayingMovies = () => {
+  const { data: nowPlayingMovies } = useGetNowPlayingMoviesQuery()
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleResize = () => {
-      updateVisibleCards(containerRef.current, 180, 20) // карточки 180px
+      updateVisibleCards(containerRef.current, 180, 20)
     }
 
     window.addEventListener("resize", handleResize)
-    handleResize() // сразу после рендера
+    handleResize()
 
     return () => window.removeEventListener("resize", handleResize)
-  }, [data])
+  }, [nowPlayingMovies])
 
-  const movies = data?.results ?? []
+  const movies = nowPlayingMovies?.results ?? []
 
   return (
     <div ref={containerRef} className={s.container}>
