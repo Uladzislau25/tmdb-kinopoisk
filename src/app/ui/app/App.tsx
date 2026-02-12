@@ -7,6 +7,7 @@ import { getTheme } from "@/common/theme/theme.ts"
 import { CssBaseline } from "@mui/material"
 import { Footer } from "@/common/components"
 import { Header } from "@/common/components/Header/Header.tsx"
+import { ToastContainer } from "react-toastify"
 
 export const App = () => {
   const themeMode = useAppSelector(selectThemeMode)
@@ -22,6 +23,7 @@ export const App = () => {
         </div>
         <Footer />
       </div>
+      <ToastContainer />
     </ThemeProvider>
   )
 }

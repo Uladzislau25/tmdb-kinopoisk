@@ -1,16 +1,36 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { GenresResponse, SearchMoviesParams, SearchResponse } from "@/app/moviesApi.types.ts"
 import { AUTH_TOKEN, BASE_URL } from "@/common/constants"
+import { toast } from "react-toastify"
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
-    prepareHeaders: (headers) => {
-      headers.set("Authorization", `Bearer ${AUTH_TOKEN}`)
-      return headers
-    },
-  }),
+  baseQuery: async (args, api, extraOptions) => {
+    const result = await fetchBaseQuery({
+      baseUrl: BASE_URL,
+      prepareHeaders: (headers) => {
+        headers.set("Authorization", `Bearer ${AUTH_TOKEN}`)
+        return headers
+      },
+    })(args, api, extraOptions)
+    if (result.error) {
+      switch (result.error.status) {
+        case "FETCH_ERROR":
+        case "PARSING_ERROR":
+        case "CUSTOM_ERROR":
+        case "TIMEOUT_ERROR":
+          toast(result.error.error, { type: "error", theme: "colored" })
+          break
+        case 401:
+        case 404:
+          toast((result.error.data as { status_message: string }).status_message, { type: "error", theme: "colored" })
+          break
+        default:
+          toast("Some error occurred", { type: "error", theme: "colored" })
+      }
+    }
+    return result
+  },
   endpoints: (build) => ({
     searchMovies: build.query<SearchResponse, SearchMoviesParams>({
       query: ({ query, page = 1 }) => ({
