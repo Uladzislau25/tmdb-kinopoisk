@@ -1,0 +1,10 @@
+section {
+    display: flex;
+}
+.container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px
+}

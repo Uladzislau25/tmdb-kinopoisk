@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 30px;
+}
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.img {
+    width: 280px;
+    height: 420px;
+    border-radius: 16px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.detail {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+.list {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0;
+    gap: 20px;
+    list-style: none;
+}
+
+.list li {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 15px;
+    background-color: var(--appbar-bg);
+    border: 1px solid var(--btn-border-color);
+}
+
+
+
+.rating {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #facc15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+}
+.high {
+    background-color: #16a34a; /* зелёный */
+}
+.medium {
+    background-color: #eab308; /* жёлтый */
+    color: black;
+}
+.low {
+    background-color: #dc2626; /* красный */
+}

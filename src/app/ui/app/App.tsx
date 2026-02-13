@@ -20,10 +20,10 @@ export const App = () => {
         <Header />
         <div className={s.layout}>
           <Routing />
+          <ToastContainer />
         </div>
         <Footer />
       </div>
-      <ToastContainer />
     </ThemeProvider>
   )
 }

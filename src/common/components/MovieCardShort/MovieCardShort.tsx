@@ -1,18 +1,18 @@
 import { useState } from "react"
-import s from "./MovieCard.module.css"
-import * as React from "react"
-import type { Movie } from "@/app/moviesApi.types.ts"
 import { Link, useLocation } from "react-router"
+import type { MovieShort } from "@/features/movies/MoviesDetailPage/api/movieDetailApi.types.ts"
+import * as React from "react"
+import s from "./MovieCardShort.module.css"
 
 const placeholder = "https://placehold.co/300x450?text=No+Poster"
 
 type Props = {
-  movie: Movie
+  movie: MovieShort
   width?: number
   height?: number
 }
 
-export const MovieCard = ({ movie, width = 220, height = 330 }: Props) => {
+export const MovieCardShort = ({ movie, width = 220, height = 330 }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const location = useLocation()
 
