@@ -17,7 +17,7 @@ export const MovieSchema = z.object({
 })
 
 export const PaginatedMoviesSchema = z.object({
-  page: z.string(),
+  page: z.number(),
   results: z.array(MovieSchema),
   total_pages: z.number(),
   total_results: z.number(),

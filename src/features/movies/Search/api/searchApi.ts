@@ -1,5 +1,6 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type { PaginatedMovies, SearchMoviesParams } from "@/app/moviesApi.schema.ts"
+import { type PaginatedMovies, PaginatedMoviesSchema, type SearchMoviesParams } from "@/app/moviesApi.schema.ts"
+import { withZodCatch } from "@/common/utils/withZodCatch.ts"
 
 export const searchApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -10,6 +11,7 @@ export const searchApi = baseApi.injectEndpoints({
           query,
           page,
         },
+        ...withZodCatch(PaginatedMoviesSchema),
       }),
     }),
   }),

@@ -1,5 +1,11 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type { GenresResponse, PaginatedMovies } from "@/app/moviesApi.schema.ts"
+import {
+  type GenresResponse,
+  GenresResponseSchema,
+  type PaginatedMovies,
+  PaginatedMoviesSchema,
+} from "@/app/moviesApi.schema.ts"
+import { withZodCatch } from "@/common/utils/withZodCatch.ts"
 
 export const filtredApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -18,10 +24,12 @@ export const filtredApi = baseApi.injectEndpoints({
         params: {
           ...params,
         },
+        ...withZodCatch(PaginatedMoviesSchema),
       }),
     }),
     getGenres: build.query<GenresResponse, void>({
       query: () => "/genre/movie/list",
+      ...withZodCatch(GenresResponseSchema),
     }),
   }),
 })
