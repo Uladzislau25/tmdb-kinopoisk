@@ -1,6 +1,6 @@
-import { MovieCardShort } from "@/common/components/MovieCardShort/MovieCardShort.tsx"
 import s from "./SimilarMovies.module.css"
 import type { MovieShort } from "@/app/moviesApi.schema.ts"
+import { MovieCard } from "@/common/components"
 
 type Props = {
   movies: MovieShort[]
@@ -13,7 +13,7 @@ export const SimilarMovies = ({ movies }: Props) => {
       <div>
         <div className={s.container}>
           {movies.slice(0, 6).map((movie) => (
-            <MovieCardShort key={movie.id} movie={movie} width={180} height={270} />
+            <MovieCard key={movie.id} movie={movie} width={180} height={270} />
           ))}
         </div>
       </div>
