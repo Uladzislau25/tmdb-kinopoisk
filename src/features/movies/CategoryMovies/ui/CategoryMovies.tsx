@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import { MovieCard } from "@/common/components"
 
 import s from "./CategoryMovies.module.css"
-import type { Movie } from "@/app/moviesApi.types.ts"
 import { useGetMoviesQuery } from "@/features/movies/CategoryMovies/api/categoryApi.ts"
+import type { Movie } from "@/app/moviesApi.schema.ts"
 
 const categories = [
   { key: "popular", label: "Popular Movies" },

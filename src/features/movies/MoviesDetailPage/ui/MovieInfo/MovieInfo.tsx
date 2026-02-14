@@ -1,6 +1,6 @@
-import type { MovieDetail } from "@/features/movies/MoviesDetailPage/api/movieDetailApi.types.ts"
 import { BackButton } from "@/features/movies/MoviesDetailPage/ui/BackButton/BackButton.tsx"
 import s from "./MovieInfo.module.css"
+import type { MovieDetail } from "@/app/moviesApi.schema.ts"
 
 const IMAGE_URL = "https://image.tmdb.org/t/p/w342"
 const NO_IMAGE_URL = "https://placehold.co/500x750?text=No+Image"

@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router"
-import type { MovieShort } from "@/features/movies/MoviesDetailPage/api/movieDetailApi.types.ts"
+
 import * as React from "react"
 import s from "./MovieCardShort.module.css"
+import type { MovieShort } from "@/app/moviesApi.schema.ts"
 
 const placeholder = "https://placehold.co/300x450?text=No+Poster"
 

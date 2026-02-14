@@ -1,9 +1,9 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type { SearchMoviesParams, SearchResponse } from "@/app/moviesApi.types.ts"
+import type { PaginatedMovies, SearchMoviesParams } from "@/app/moviesApi.schema.ts"
 
 export const searchApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    searchMovies: build.query<SearchResponse, SearchMoviesParams>({
+    searchMovies: build.query<PaginatedMovies, SearchMoviesParams>({
       query: ({ query, page = 1 }) => ({
         url: "search/movie",
         params: {

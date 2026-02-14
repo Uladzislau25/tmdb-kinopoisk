@@ -1,10 +1,10 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type { GenresResponse, SearchResponse } from "@/app/moviesApi.types.ts"
+import type { GenresResponse, PaginatedMovies } from "@/app/moviesApi.schema.ts"
 
 export const filtredApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getMoviesDiscover: build.query<
-      SearchResponse,
+      PaginatedMovies,
       {
         sort_by: string
         "vote_average.gte"?: number

@@ -1,9 +1,5 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type {
-  MovieCreditsResponse,
-  MovieDetail,
-  MoviesResponse,
-} from "@/features/movies/MoviesDetailPage/api/movieDetailApi.types.ts"
+import { type MovieCreditsResponse, type MovieDetail, type MoviesResponse } from "@/app/moviesApi.schema.ts"
 
 export const movieDetailApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

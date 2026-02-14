@@ -1,18 +1,18 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type { SearchResponse } from "@/app/moviesApi.types.ts"
+import type { PaginatedMovies } from "@/app/moviesApi.schema.ts"
 
 export const mainApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getPopularMovies: build.query<SearchResponse, void>({
+    getPopularMovies: build.query<PaginatedMovies, void>({
       query: () => "/movie/popular",
     }),
-    getTopRatedMovies: build.query<SearchResponse, void>({
+    getTopRatedMovies: build.query<PaginatedMovies, void>({
       query: () => "movie/top_rated",
     }),
-    getUpcomingMovies: build.query<SearchResponse, void>({
+    getUpcomingMovies: build.query<PaginatedMovies, void>({
       query: () => "movie/upcoming",
     }),
-    getNowPlayingMovies: build.query<SearchResponse, void>({
+    getNowPlayingMovies: build.query<PaginatedMovies, void>({
       query: () => "movie/now_playing",
     }),
   }),

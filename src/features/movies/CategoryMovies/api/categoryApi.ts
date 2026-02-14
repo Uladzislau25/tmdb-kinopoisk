@@ -1,9 +1,9 @@
 import { baseApi } from "@/app/baseApi.ts"
-import type { SearchResponse } from "@/app/moviesApi.types.ts"
+import type { PaginatedMovies } from "@/app/moviesApi.schema.ts"
 
 export const categoryApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getMovies: build.query<SearchResponse, { category: string; page: number }>({
+    getMovies: build.query<PaginatedMovies, { category: string; page: number }>({
       query: ({ category, page }) => ({
         url: `/movie/${category}`,
         params: {

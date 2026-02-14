@@ -1,6 +1,6 @@
-import type { MovieShort } from "@/features/movies/MoviesDetailPage/api/movieDetailApi.types.ts"
 import { MovieCardShort } from "@/common/components/MovieCardShort/MovieCardShort.tsx"
 import s from "./SimilarMovies.module.css"
+import type { MovieShort } from "@/app/moviesApi.schema.ts"
 
 type Props = {
   movies: MovieShort[]

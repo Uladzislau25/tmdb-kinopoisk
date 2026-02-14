@@ -1,6 +1,7 @@
-import type { Cast } from "@/features/movies/MoviesDetailPage/api/movieDetailApi.types.ts"
 import { ActorCard } from "@/features/movies/MoviesDetailPage/ui/MovieCast/ActorCard/ActorCard.tsx"
 import s from "./MovieCast.module.css"
+import type { Cast } from "@/app/moviesApi.schema.ts"
+
 type Props = {
   cast: Cast[]
 }
