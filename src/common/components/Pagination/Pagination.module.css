@@ -6,9 +6,8 @@
   gap: 16px;
 }
 .btn {
-  width: 80px;
-  height: 31px;
-  padding: 6px 10px;
+  width: 100px;
+  height: 35px;
   border-radius: 15px;
   cursor: pointer;
   background-color: #2563eb;
@@ -16,6 +15,8 @@
   color: #fff;
   border: none;
   transition: all 0.2s ease;
+    align-items: center;
+    justify-content: center;
 }
 .btn:hover {
   background-color: #1d4ed8; /* чуть темнее */

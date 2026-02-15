@@ -7,13 +7,13 @@ type Props = {
 export const Pagination = ({ page, totalPages = 1, onChange }: Props) => (
   <div className={s.container}>
     <button className={s.btn} disabled={page === 1} onClick={() => onChange(page - 1)}>
-      Назад
+      ⬅︎ Back
     </button>
     <span>
       {page}/{totalPages}
     </span>
     <button className={s.btn} disabled={page === totalPages} onClick={() => onChange(page + 1)}>
-      Вперёд
+      Next ➡︎
     </button>
   </div>
 )

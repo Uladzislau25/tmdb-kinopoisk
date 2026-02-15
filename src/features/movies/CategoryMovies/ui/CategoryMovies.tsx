@@ -7,6 +7,7 @@ import s from "./CategoryMovies.module.css"
 import { useGetMoviesQuery } from "@/features/movies/CategoryMovies/api/categoryApi.ts"
 import type { Movie } from "@/app/moviesApi.schema.ts"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
+import { MovieSkeleton } from "@/common/components/MovieSkeleton/MovieSkeleton.tsx"
 
 const categories = [
   { key: "popular", label: "Popular Movies" },
@@ -23,7 +24,7 @@ export const CategoryMovies = () => {
 
   const [movies, setMovies] = useState<Movie[]>([])
 
-  const { data } = useGetMoviesQuery({
+  const { data, isFetching } = useGetMoviesQuery({
     category: type,
     page: pageFromUrl,
   })
@@ -68,9 +69,15 @@ export const CategoryMovies = () => {
       <section className={s.box}>
         <h2>{activeCategory?.label}</h2>
         <div className={s.moviesGrid}>
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          {isFetching ? (
+            <MovieSkeleton width={220} height={330} rows={4} columns={5} />
+          ) : (
+            <>
+              {movies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
+            </>
+          )}
         </div>
         <Pagination page={pageFromUrl} onChange={handlePageChange} totalPages={data?.total_pages} />
       </section>
