@@ -5,6 +5,7 @@ import { handleErrors } from "@/common/utils/henldeErrors.ts"
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: async (args, api, extraOptions) => {
+    await new Promise((resolve) => setTimeout(resolve, 5000))
     const result = await fetchBaseQuery({
       baseUrl: BASE_URL,
       prepareHeaders: (headers) => {

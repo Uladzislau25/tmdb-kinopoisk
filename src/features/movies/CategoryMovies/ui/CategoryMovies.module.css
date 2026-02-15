@@ -1,5 +1,6 @@
 .wrapper {
   padding: 0 124px;
+    margin-bottom: 0;
 }
 .container {
   padding-top: 30px;
@@ -32,4 +33,7 @@
   color: #e5e7eb;
   background-color: #2563eb;
   cursor: pointer;
+}
+.box {
+    margin-bottom: 0;
 }

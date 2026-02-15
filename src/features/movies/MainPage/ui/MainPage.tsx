@@ -1,16 +1,21 @@
 import { SearchBar } from "@/common/components"
 import s from "./MainPage.module.css"
 import { useMemo } from "react"
-import { PopularMovie } from "@/features/movies/CategoryMovies/ui/PopularMovie/PopularMovie.tsx"
-import { SectionTitle } from "@/common/components/SectionTitle/SectionTitle.tsx"
-import { TopRatedMovies } from "@/features/movies/CategoryMovies/ui/TopRatedMovies/TopRatedMovies.tsx"
-import { UpcomingMovie } from "@/features/movies/CategoryMovies/ui/UpcomingMovie/UpcomingMovie.tsx"
-import { NowPlayingMovies } from "@/features/movies/CategoryMovies/ui/NowPlayingMovies/NowPlayingMovies.tsx"
-import { useGetPopularMoviesQuery } from "@/features/movies/MainPage/api/mainApi.ts"
+import { SectionTitle } from "@/features/movies/MainPage/ui/SectionTitle/SectionTitle.tsx"
+import {
+  useGetNowPlayingMoviesQuery,
+  useGetPopularMoviesQuery,
+  useGetTopRatedMoviesQuery,
+  useGetUpcomingMoviesQuery,
+} from "@/features/movies/MainPage/api/mainApi.ts"
 import { MovieSkeleton } from "@/common/components/MovieSkeleton/MovieSkeleton.tsx"
+import { MovieSection } from "@/features/movies/MainPage/ui/MovieSection/MovieSection.tsx"
 
 export const MainPage = () => {
-  const { data, isLoading } = useGetPopularMoviesQuery()
+  const { data, isFetching } = useGetPopularMoviesQuery()
+  const { data: topRatedMovies } = useGetTopRatedMoviesQuery()
+  const { data: upcomingMovies } = useGetUpcomingMoviesQuery()
+  const { data: nowPlayingMovies } = useGetNowPlayingMoviesQuery()
 
   const randomMovie = useMemo(() => {
     if (!data?.results.length) return null
@@ -23,7 +28,7 @@ export const MainPage = () => {
     : ""
 
   return (
-    <>
+    <section className={s.sectionMain}>
       <div className={s.wrapper} style={{ backgroundImage: `url(${backdropUrl})` }}>
         <div className={s.overlay} />
         <div className={s.content}>
@@ -32,22 +37,46 @@ export const MainPage = () => {
           <SearchBar />
         </div>
       </div>
-      <section className={s.section}>
+      <div className={s.section}>
         <SectionTitle title={"Popular Movies"} params={"popular"} />
-        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <PopularMovie />}</div>
-      </section>
-      <section className={s.section}>
+        <div className={s.box}>
+          {isFetching ? (
+            <MovieSkeleton columns={6} rows={1} width={180} height={260} />
+          ) : (
+            <MovieSection movies={data?.results} />
+          )}
+        </div>
+      </div>
+      <div className={s.section}>
         <SectionTitle title={"Top Rated Movies"} params={"top_rated"} />
-        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <TopRatedMovies />}</div>
-      </section>
-      <section className={s.section}>
+        <div className={s.box}>
+          {isFetching ? (
+            <MovieSkeleton columns={6} rows={1} width={180} height={260} />
+          ) : (
+            <MovieSection movies={topRatedMovies?.results} />
+          )}
+        </div>
+      </div>
+      <div className={s.section}>
         <SectionTitle title={"Upcoming Movies"} params={"upcoming"} />
-        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <UpcomingMovie />}</div>
-      </section>
-      <section className={s.section}>
+        <div className={s.box}>
+          {isFetching ? (
+            <MovieSkeleton columns={6} rows={1} width={180} height={260} />
+          ) : (
+            <MovieSection movies={upcomingMovies?.results} />
+          )}
+        </div>
+      </div>
+      <div className={s.section}>
         <SectionTitle title={"Now Playing Movies"} params={"now_playing"} />
-        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <NowPlayingMovies />}</div>
-      </section>
-    </>
+        <div className={s.box}>
+          {isFetching ? (
+            <MovieSkeleton columns={6} rows={1} width={180} height={260} />
+          ) : (
+            <MovieSection movies={nowPlayingMovies?.results} />
+          )}
+        </div>
+      </div>
+    </section>
   )
 }

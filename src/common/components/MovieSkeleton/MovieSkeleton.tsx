@@ -1,13 +1,45 @@
-import { Skeleton, Box, Stack } from "@mui/material"
+import { Box, Skeleton } from "@mui/material"
 
-export const MovieSkeleton = ({ count = 5 }) => (
-  <Stack direction="row" spacing={2} flexWrap="wrap">
-    {Array.from({ length: count }).map((_, index) => (
-      <Box key={index} sx={{ width: 200, mb: 2 }}>
-        <Skeleton variant="rectangular" height={300} />
-        <Skeleton variant="text" height={30} sx={{ mt: 1 }} />
-        <Skeleton variant="text" width="80%" />
-      </Box>
-    ))}
-  </Stack>
-)
+type MovieSkeletonProps = {
+  columns?: number
+  rows?: number
+  width?: number | string
+  height?: number | string
+  borderRadius?: number | string
+}
+
+export const MovieSkeleton = ({
+  columns = 5,
+  rows = 1,
+  width = 200,
+  height = 300,
+  borderRadius = 15,
+}: MovieSkeletonProps) => {
+  const count = columns * rows
+
+  return (
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: `repeat(${columns}, ${typeof width === "number" ? `${width}px` : width})`,
+        gap: 2.7,
+      }}
+    >
+      {Array.from({ length: count }).map((_, index) => (
+        <Box key={index} sx={{ width }}>
+          <Skeleton variant="rectangular" width={width} height={height} sx={{ borderRadius: `${borderRadius}px` }} />
+
+          <Skeleton
+            variant="text"
+            width="80%"
+            height={24}
+            sx={{
+              mt: 1,
+              borderRadius: `${borderRadius}px`,
+            }}
+          />
+        </Box>
+      ))}
+    </Box>
+  )
+}

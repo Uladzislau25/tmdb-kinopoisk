@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react"
 import { useDebounce } from "@/common/hooks/useDebounce.ts"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
-import { MovieCard } from "@/common/components"
 import { FiltersPanel } from "@/features/movies/FilteredMovies/ui/FiltredPanel/FiltredPanel.tsx"
 import s from "./FiltredMovies.module.css"
 import { useGetMoviesDiscoverQuery } from "@/features/movies/FilteredMovies/api/filtredApi.ts"
 import type { Movie } from "@/app/moviesApi.schema.ts"
+import { MovieSkeleton } from "@/common/components/MovieSkeleton/MovieSkeleton.tsx"
+import { ResultSort } from "@/features/movies/FilteredMovies/ui/ResultSort/ResultSort.tsx"
 
 export const FilteredMovies = () => {
   const [sortBy, setSortBy] = useState<string>("popularity.desc")
@@ -20,7 +21,7 @@ export const FilteredMovies = () => {
   const debouncedRating = useDebounce(rating, 200)
   const isTitleSort = sortBy.startsWith("title")
 
-  const { data } = useGetMoviesDiscoverQuery({
+  const { data, isFetching } = useGetMoviesDiscoverQuery({
     sort_by: isTitleSort ? "popularity.desc" : sortBy,
     "vote_average.gte": debouncedRating[0],
     "vote_average.lte": debouncedRating[1],
@@ -47,7 +48,7 @@ export const FilteredMovies = () => {
   }
 
   return (
-    <div className={s.wrapper}>
+    <section className={s.wrapper}>
       <FiltersPanel
         sortBy={sortBy}
         setSortBy={setSortBy}
@@ -58,15 +59,15 @@ export const FilteredMovies = () => {
         resetFilters={resetFilters}
       />
 
-      <main className={s.box}>
-        <div className={s.container}>
-          {sortedMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} width={150} height={250} />
-          ))}
-        </div>
+      {isFetching ? (
+        <MovieSkeleton width={150} height={250} columns={5} rows={4} />
+      ) : (
+        <section className={s.box}>
+          <ResultSort movies={sortedMovies} />
 
-        <Pagination page={page} totalPages={data?.total_pages} onChange={setPage} />
-      </main>
-    </div>
+          <Pagination page={page} totalPages={data?.total_pages} onChange={setPage} />
+        </section>
+      )}
+    </section>
   )
 }

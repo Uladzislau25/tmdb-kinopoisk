@@ -20,10 +20,10 @@ export const App = () => {
         <CssBaseline />
         <Header />
         {isGlobalLoading && <LinearProgress />}
-        <div className={s.layout}>
+        <main className={s.layout}>
           <Routing />
           <ToastContainer />
-        </div>
+        </main>
         <Footer />
       </div>
     </ThemeProvider>

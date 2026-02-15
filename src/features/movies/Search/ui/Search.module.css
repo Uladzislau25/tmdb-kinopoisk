@@ -1,6 +1,6 @@
 /* GRID */
 .wrapper {
-    margin-top: 24px;
+    margin-bottom: 0;
   padding: 0 124px;
 }
 .moviesGrid {
@@ -8,4 +8,7 @@
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 28px;
   margin-top: 25px;
+}
+.box {
+    margin: 0;
 }

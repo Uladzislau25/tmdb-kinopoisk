@@ -52,7 +52,7 @@ export const CategoryMovies = () => {
   const activeCategory = categories.find((c) => c.key === type)
 
   return (
-    <div className={s.wrapper}>
+    <section className={s.wrapper}>
       <div className={s.container}>
         {categories.map((cat) => (
           <button
@@ -65,13 +65,15 @@ export const CategoryMovies = () => {
         ))}
       </div>
 
-      <h2>{activeCategory?.label}</h2>
-      <div className={s.moviesGrid}>
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-      <Pagination page={pageFromUrl} onChange={handlePageChange} totalPages={data?.total_pages} />
-    </div>
+      <section className={s.box}>
+        <h2>{activeCategory?.label}</h2>
+        <div className={s.moviesGrid}>
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+        <Pagination page={pageFromUrl} onChange={handlePageChange} totalPages={data?.total_pages} />
+      </section>
+    </section>
   )
 }

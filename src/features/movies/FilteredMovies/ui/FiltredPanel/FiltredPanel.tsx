@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Rating } from "@/common/components/Rating/Rating.tsx"
-import { SortSelect } from "@/common/components/SortSelect/SortSelect.tsx"
+import { SortSelect } from "@/features/movies/FilteredMovies/ui/SortSelect/SortSelect.tsx"
 import s from "./FiltredPanel.module.css"
 import { useGetGenresQuery } from "@/features/movies/FilteredMovies/api/filtredApi.ts"
 
