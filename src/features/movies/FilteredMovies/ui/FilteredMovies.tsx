@@ -20,7 +20,7 @@ export const FilteredMovies = () => {
   const debouncedRating = useDebounce(rating, 200)
   const isTitleSort = sortBy.startsWith("title")
 
-  const { data, isLoading } = useGetMoviesDiscoverQuery({
+  const { data } = useGetMoviesDiscoverQuery({
     sort_by: isTitleSort ? "popularity.desc" : sortBy,
     "vote_average.gte": debouncedRating[0],
     "vote_average.lte": debouncedRating[1],
@@ -59,8 +59,6 @@ export const FilteredMovies = () => {
       />
 
       <main className={s.box}>
-        {isLoading && <p>Загрузка...</p>}
-
         <div className={s.container}>
           {sortedMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} width={150} height={250} />

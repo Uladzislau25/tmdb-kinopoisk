@@ -7,9 +7,10 @@ import { TopRatedMovies } from "@/features/movies/CategoryMovies/ui/TopRatedMovi
 import { UpcomingMovie } from "@/features/movies/CategoryMovies/ui/UpcomingMovie/UpcomingMovie.tsx"
 import { NowPlayingMovies } from "@/features/movies/CategoryMovies/ui/NowPlayingMovies/NowPlayingMovies.tsx"
 import { useGetPopularMoviesQuery } from "@/features/movies/MainPage/api/mainApi.ts"
+import { MovieSkeleton } from "@/common/components/MovieSkeleton/MovieSkeleton.tsx"
 
 export const MainPage = () => {
-  const { data } = useGetPopularMoviesQuery()
+  const { data, isLoading } = useGetPopularMoviesQuery()
 
   const randomMovie = useMemo(() => {
     if (!data?.results.length) return null
@@ -33,27 +34,19 @@ export const MainPage = () => {
       </div>
       <section className={s.section}>
         <SectionTitle title={"Popular Movies"} params={"popular"} />
-        <div className={s.box}>
-          <PopularMovie />
-        </div>
+        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <PopularMovie />}</div>
       </section>
       <section className={s.section}>
         <SectionTitle title={"Top Rated Movies"} params={"top_rated"} />
-        <div className={s.box}>
-          <TopRatedMovies />
-        </div>
+        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <TopRatedMovies />}</div>
       </section>
       <section className={s.section}>
         <SectionTitle title={"Upcoming Movies"} params={"upcoming"} />
-        <div className={s.box}>
-          <UpcomingMovie />
-        </div>
+        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <UpcomingMovie />}</div>
       </section>
       <section className={s.section}>
         <SectionTitle title={"Now Playing Movies"} params={"now_playing"} />
-        <div className={s.box}>
-          <NowPlayingMovies />
-        </div>
+        <div className={s.box}>{isLoading ? <MovieSkeleton /> : <NowPlayingMovies />}</div>
       </section>
     </>
   )

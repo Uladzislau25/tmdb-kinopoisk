@@ -11,7 +11,7 @@ export const Search = () => {
   const query = (params.get("query") || "").trim()
   const page = Number(params.get("page") || 1)
 
-  const { data, isLoading, isError } = useSearchMoviesQuery({ query, page }, { skip: !query })
+  const { data } = useSearchMoviesQuery({ query, page }, { skip: !query })
   const movies = data?.results ?? []
 
   const handlePageChange = (newPage: number) => {
@@ -27,10 +27,6 @@ export const Search = () => {
       <SearchBar />
 
       {!query && <p>Enter a movie title to start searching</p>}
-
-      {isLoading && <p>Loading...</p>}
-
-      {isError && <p>Error loading movies</p>}
 
       {query && data?.results.length === 0 && <p>No matches found for: {query}</p>}
 

@@ -13,13 +13,10 @@ export const MoviesDetailPage = () => {
   const { id } = useParams()
   const movieId = Number(id)
 
-  const { data: movie, isLoading, isError } = useGetMovieDetailstQuery(movieId)
+  const { data: movie } = useGetMovieDetailstQuery(movieId)
   const { data: credits } = useGetMovieCreditsQuery(movieId)
   const { data: similar } = useGetSimilarMoviesQuery(movieId)
-
-  if (isLoading) return <p>Loading...</p>
-  if (isError || !movie) return <p>Error!</p>
-
+  if (!movie) return null
   return (
     <main className={s.wrapper}>
       <MovieInfo movie={movie} />

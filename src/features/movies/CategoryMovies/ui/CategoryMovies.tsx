@@ -1,11 +1,12 @@
 import { useSearchParams } from "react-router"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { MovieCard } from "@/common/components"
 
 import s from "./CategoryMovies.module.css"
 import { useGetMoviesQuery } from "@/features/movies/CategoryMovies/api/categoryApi.ts"
 import type { Movie } from "@/app/moviesApi.schema.ts"
+import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
 
 const categories = [
   { key: "popular", label: "Popular Movies" },
@@ -18,56 +19,34 @@ export const CategoryMovies = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const type = searchParams.get("type") || "popular"
-
-  const [page, setPage] = useState(1)
+  const pageFromUrl = Number(searchParams.get("page")) || 1
 
   const [movies, setMovies] = useState<Movie[]>([])
 
-  const loaderRef = useRef<HTMLDivElement | null>(null)
-
-  const { data, isLoading, isFetching, isError } = useGetMoviesQuery({
+  const { data } = useGetMoviesQuery({
     category: type,
-    page,
+    page: pageFromUrl,
   })
 
   useEffect(() => {
-    setPage(1)
-    setMovies([])
-
-    setSearchParams({
-      type,
-    })
-  }, [type])
-
-  useEffect(() => {
     if (data?.results) {
-      setMovies((prev) => [...prev, ...data.results])
+      setMovies(data.results)
     }
   }, [data])
-
-  useEffect(() => {
-    if (!loaderRef.current) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !isFetching && page < (data?.total_pages || 1)) {
-          setPage((prev) => prev + 1)
-        }
-      },
-      {
-        rootMargin: "200px",
-      },
-    )
-
-    observer.observe(loaderRef.current)
-
-    return () => observer.disconnect()
-  }, [isFetching, data, page])
 
   const handleCategoryChange = (newType: string) => {
     setSearchParams({
       type: newType,
+      page: "1",
     })
+  }
+
+  const handlePageChange = (newPage: number) => {
+    setSearchParams({
+      type,
+      page: newPage.toString(),
+    })
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   const activeCategory = categories.find((c) => c.key === type)
@@ -87,18 +66,12 @@ export const CategoryMovies = () => {
       </div>
 
       <h2>{activeCategory?.label}</h2>
-
-      {isError && <p>Error...</p>}
-
       <div className={s.moviesGrid}>
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-
-      <div ref={loaderRef} />
-
-      {(isLoading || isFetching) && <p>Loading...</p>}
+      <Pagination page={pageFromUrl} onChange={handlePageChange} totalPages={data?.total_pages} />
     </div>
   )
 }
