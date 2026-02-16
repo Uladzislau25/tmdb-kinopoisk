@@ -19,7 +19,7 @@
     justify-content: center;
 }
 .btn:hover {
-  background-color: #1d4ed8; /* чуть темнее */
+  background-color: #1d4ed8;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
   transform: translateY(-2px);
 }

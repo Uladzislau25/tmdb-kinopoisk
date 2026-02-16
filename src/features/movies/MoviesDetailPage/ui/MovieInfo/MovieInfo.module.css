@@ -42,9 +42,6 @@
     background-color: var(--appbar-bg);
     border: 1px solid var(--btn-border-color);
 }
-
-
-
 .rating {
     width: 40px;
     height: 40px;
@@ -58,12 +55,12 @@
     color: #000;
 }
 .high {
-    background-color: #16a34a; /* зелёный */
+    background-color: #16a34a;
 }
 .medium {
-    background-color: #eab308; /* жёлтый */
+    background-color: #eab308;
     color: black;
 }
 .low {
-    background-color: #dc2626; /* красный */
+    background-color: #dc2626;
 }

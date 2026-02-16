@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router"
-
 import { MovieCard, SearchBar } from "@/common/components"
 import s from "./Search.module.css"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"

@@ -1,8 +1,6 @@
 import { useSearchParams } from "react-router"
 import { useEffect, useState } from "react"
-
 import { MovieCard } from "@/common/components"
-
 import s from "./CategoryMovies.module.css"
 import { useGetMoviesQuery } from "@/features/movies/CategoryMovies/api/categoryApi.ts"
 import type { Movie } from "@/app/schemas/moviesApi.schema.ts"
