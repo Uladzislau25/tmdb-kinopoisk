@@ -1,4 +1,4 @@
-import { baseApi } from "@/app/baseApi.ts"
+import { baseApi } from "@/app/api/baseApi.ts"
 import {
   type MovieCreditsResponse,
   MovieCreditsResponseSchema,
@@ -6,7 +6,7 @@ import {
   MovieDetailSchema,
   type MoviesResponse,
   MoviesResponseSchema,
-} from "@/app/moviesApi.schema.ts"
+} from "@/app/schemas/moviesApi.schema.ts"
 import { withZodCatch } from "@/common/utils/withZodCatch.ts"
 
 export const movieDetailApi = baseApi.injectEndpoints({

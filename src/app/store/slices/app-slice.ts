@@ -1,12 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-export type FavoriteMovie = {
-  id: number
-  title: string
-  posterUrl: string | null
-  voteAverage: number
-}
-
-export type ThemeMode = "dark" | "light"
+import type { FavoriteMovie, ThemeMode } from "@/app/type/types.ts"
 
 const getInitialTheme = (): ThemeMode => {
   const saved = localStorage.getItem("themeMode")

@@ -1,8 +1,9 @@
 import s from "./MovieCard.module.css"
 import * as React from "react"
 import { Link, useLocation } from "react-router"
-import type { CardMovie, Movie, MovieShort } from "@/app/moviesApi.schema.ts"
+import type { Movie, MovieShort } from "@/app/schemas/moviesApi.schema.ts"
 import { useIsFavorite, useToggleFavorite } from "@/common/hooks"
+import type { CardMovie } from "@/app/type/types.ts"
 
 const placeholder = "https://placehold.co/300x450?text=No+Poster"
 

@@ -1,5 +1,5 @@
-import { baseApi } from "@/app/baseApi.ts"
-import { type PaginatedMovies, PaginatedMoviesSchema } from "@/app/moviesApi.schema.ts"
+import { baseApi } from "@/app/api/baseApi.ts"
+import { type PaginatedMovies, PaginatedMoviesSchema } from "@/app/schemas/moviesApi.schema.ts"
 import { withZodCatch } from "@/common/utils/withZodCatch.ts"
 
 export const categoryApi = baseApi.injectEndpoints({

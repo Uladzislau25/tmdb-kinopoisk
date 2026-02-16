@@ -1,5 +1,6 @@
 import { useAppDispatch } from "@/common/hooks/useAppDispatch.ts"
-import { type FavoriteMovie, toggleFavoriteAC } from "@/app/app-slice.ts"
+import { toggleFavoriteAC } from "@/app/store/slices/app-slice.ts"
+import type { FavoriteMovie } from "@/app/type/types.ts"
 
 export const useToggleFavorite = () => {
   const dispatch = useAppDispatch()

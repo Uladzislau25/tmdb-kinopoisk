@@ -5,7 +5,7 @@ import { MovieCard } from "@/common/components"
 
 import s from "./CategoryMovies.module.css"
 import { useGetMoviesQuery } from "@/features/movies/CategoryMovies/api/categoryApi.ts"
-import type { Movie } from "@/app/moviesApi.schema.ts"
+import type { Movie } from "@/app/schemas/moviesApi.schema.ts"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
 import { MovieSkeleton } from "@/common/components/MovieSkeleton/MovieSkeleton.tsx"
 

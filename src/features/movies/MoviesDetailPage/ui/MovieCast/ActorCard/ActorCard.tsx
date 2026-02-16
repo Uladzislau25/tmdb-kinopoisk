@@ -1,5 +1,5 @@
 import s from "./ActorCard.module.css"
-import type { Cast } from "@/app/moviesApi.schema.ts"
+import type { Cast } from "@/app/schemas/moviesApi.schema.ts"
 
 type Props = {
   actor: Cast

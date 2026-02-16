@@ -1,6 +1,6 @@
 import s from "./ResultSort.module.css"
 import { MovieCard } from "@/common/components"
-import type { Movie } from "@/app/moviesApi.schema.ts"
+import type { Movie } from "@/app/schemas/moviesApi.schema.ts"
 
 type Props = {
   movies: Movie[]

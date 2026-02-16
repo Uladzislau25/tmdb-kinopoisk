@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router"
 import s from "./Header.module.css"
 import { Path } from "@/common/routing"
-import { changeThemeModeAC, selectThemeMode } from "@/app/app-slice.ts"
+import { changeThemeModeAC, selectThemeMode } from "@/app/store/slices/app-slice.ts"
 import { useAppDispatch, useAppSelector } from "@/common/hooks"
 import Switch from "@mui/material/Switch"
 import logo from "@/assets/image/blue_short.svg"

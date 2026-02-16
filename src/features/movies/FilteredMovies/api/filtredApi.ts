@@ -1,10 +1,10 @@
-import { baseApi } from "@/app/baseApi.ts"
+import { baseApi } from "@/app/api/baseApi.ts"
 import {
   type GenresResponse,
   GenresResponseSchema,
   type PaginatedMovies,
   PaginatedMoviesSchema,
-} from "@/app/moviesApi.schema.ts"
+} from "@/app/schemas/moviesApi.schema.ts"
 import { withZodCatch } from "@/common/utils/withZodCatch.ts"
 
 export const filtredApi = baseApi.injectEndpoints({

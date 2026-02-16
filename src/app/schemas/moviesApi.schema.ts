@@ -75,14 +75,3 @@ export type Cast = z.infer<typeof CastSchema>
 export type MovieCreditsResponse = z.infer<typeof MovieCreditsResponseSchema>
 export type MovieShort = z.infer<typeof MoviesShortSchema>
 export type MoviesResponse = z.infer<typeof MoviesResponseSchema>
-
-export type SearchMoviesParams = {
-  query: string
-  page?: number
-}
-export type CardMovie = {
-  id: number
-  title: string
-  poster_path: string | null
-  vote_average: number
-}

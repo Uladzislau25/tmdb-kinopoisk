@@ -4,7 +4,7 @@ import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
 import { FiltersPanel } from "@/features/movies/FilteredMovies/ui/FiltredPanel/FiltredPanel.tsx"
 import s from "./FiltredMovies.module.css"
 import { useGetMoviesDiscoverQuery } from "@/features/movies/FilteredMovies/api/filtredApi.ts"
-import type { Movie } from "@/app/moviesApi.schema.ts"
+import type { Movie } from "@/app/schemas/moviesApi.schema.ts"
 import { MovieSkeleton } from "@/common/components/MovieSkeleton/MovieSkeleton.tsx"
 import { ResultSort } from "@/features/movies/FilteredMovies/ui/ResultSort/ResultSort.tsx"
 

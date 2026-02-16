@@ -1,5 +1,5 @@
 import s from "./SimilarMovies.module.css"
-import type { MovieShort } from "@/app/moviesApi.schema.ts"
+import type { MovieShort } from "@/app/schemas/moviesApi.schema.ts"
 import { MovieCard } from "@/common/components"
 
 type Props = {

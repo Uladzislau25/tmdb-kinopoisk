@@ -1,6 +1,6 @@
 import { MovieCard } from "@/common/components"
 import s from "./MovieSection.module.css"
-import type { Movie } from "@/app/moviesApi.schema.ts"
+import type { Movie } from "@/app/schemas/moviesApi.schema.ts"
 
 type Props = {
   movies?: Movie[]
