@@ -8,10 +8,10 @@ import logo from "@/assets/image/blue_short.svg"
 
 const navItems = [
   { to: Path.Main, label: "Main" },
-  { to: Path.Category, label: "Category" },
-  { to: Path.Filtred, label: "Filtred" },
+  { to: Path.Category, label: "Category movies" },
+  { to: Path.Filtred, label: "Filtred movies" },
   { to: Path.Search, label: "Search" },
-  { to: Path.Favorite, label: "Favorite" },
+  { to: Path.Favorite, label: "Favorites" },
 ]
 
 export const Header = () => {

@@ -1,8 +1,7 @@
-import { selectThemeMode } from "@/app/app-slice"
 import { ThemeProvider } from "@mui/material/styles"
 import { Routing } from "@/common/routing"
 import s from "./App.module.css"
-import { useAppSelector, useGlobalLoading } from "@/common/hooks"
+import { useGlobalLoading, useThemeMode } from "@/common/hooks"
 import { getTheme } from "@/common/theme/theme.ts"
 import { CssBaseline, LinearProgress } from "@mui/material"
 import { Footer } from "@/common/components"
@@ -10,7 +9,7 @@ import { Header } from "@/common/components/Header/Header.tsx"
 import { ToastContainer } from "react-toastify"
 
 export const App = () => {
-  const themeMode = useAppSelector(selectThemeMode)
+  const themeMode = useThemeMode()
   const theme = getTheme(themeMode)
   const isGlobalLoading = useGlobalLoading()
 

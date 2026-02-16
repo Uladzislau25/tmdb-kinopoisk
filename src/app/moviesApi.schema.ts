@@ -80,3 +80,9 @@ export type SearchMoviesParams = {
   query: string
   page?: number
 }
+export type CardMovie = {
+  id: number
+  title: string
+  poster_path: string | null
+  vote_average: number
+}

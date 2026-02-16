@@ -1,25 +1,31 @@
-import { useState } from "react"
 import s from "./MovieCard.module.css"
 import * as React from "react"
 import { Link, useLocation } from "react-router"
-import type { Movie, MovieShort } from "@/app/moviesApi.schema.ts"
+import type { CardMovie, Movie, MovieShort } from "@/app/moviesApi.schema.ts"
+import { useIsFavorite, useToggleFavorite } from "@/common/hooks"
 
 const placeholder = "https://placehold.co/300x450?text=No+Poster"
 
 type Props = {
-  movie: Movie | MovieShort
+  movie: Movie | MovieShort | CardMovie
   width?: number
   height?: number
 }
 
 export const MovieCard = ({ movie, width = 220, height = 330 }: Props) => {
-  const [isFavorite, setIsFavorite] = useState(false)
   const location = useLocation()
+  const toggleFavorite = useToggleFavorite()
+  const isFavorite = useIsFavorite(movie.id)
 
   const handleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    setIsFavorite((prev) => !prev)
+    toggleFavorite({
+      id: movie.id,
+      title: movie.title,
+      posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : placeholder,
+      voteAverage: movie.vote_average ?? 0,
+    })
   }
   const rating = movie.vote_average ?? 0
 
