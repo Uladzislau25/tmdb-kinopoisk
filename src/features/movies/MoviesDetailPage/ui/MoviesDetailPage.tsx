@@ -21,7 +21,7 @@ export const MoviesDetailPage = () => {
     <main className={s.wrapper}>
       <MovieInfo movie={movie} />
       <MovieCast cast={credits?.cast ?? []} />
-      <SimilarMovies movies={similar?.results ?? []} />
+      {similar?.results.length === 0 ? null :<SimilarMovies movies={similar?.results ?? []} />}
     </main>
   )
 }
