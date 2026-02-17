@@ -1,6 +1,6 @@
 import s from "./MoviesDetailPage.module.css"
 import { MovieInfo } from "@/features/movies/MoviesDetailPage/ui/MovieInfo/MovieInfo.tsx"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import {
   useGetMovieCreditsQuery,
   useGetMovieDetailstQuery,
@@ -8,16 +8,27 @@ import {
 } from "@/features/movies/MoviesDetailPage/api/movieDetailApi.ts"
 import { MovieCast } from "@/features/movies/MoviesDetailPage/ui/MovieCast/MovieCast.tsx"
 import { SimilarMovies } from "@/features/movies/MoviesDetailPage/ui/SimilarMovies/SimilarMovies.tsx"
-import { PageNotFound } from "@/common/components/PageNotFound/PageNotFound.tsx"
+import { useEffect } from "react"
+import { Path } from "@/common/routing"
+
 
 export const MoviesDetailPage = () => {
   const { id } = useParams()
   const movieId = Number(id)
+  const navigate = useNavigate()
 
-  const { data: movie } = useGetMovieDetailstQuery(movieId)
+    const { data: movie, isLoading ,isError } = useGetMovieDetailstQuery(movieId)
   const { data: credits } = useGetMovieCreditsQuery(movieId)
   const { data: similar } = useGetSimilarMoviesQuery(movieId)
-  if (!movie) return <PageNotFound/>
+
+  useEffect(() => {
+    if (!isLoading && (isError || !movie)) {
+      navigate(Path.NotFound, { replace: true })
+    }
+  }, [isError, movie, navigate])
+
+
+  if (!movie) return null
   return (
     <main className={s.wrapper}>
       <MovieInfo movie={movie} />
