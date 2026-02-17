@@ -65,7 +65,7 @@ export const FilteredMovies = () => {
         <section className={s.box}>
           <ResultSort movies={sortedMovies} />
 
-          <Pagination page={page} totalPages={data?.total_pages} onChange={setPage} />
+          {(data?.total_pages ?? 0) > 1 && <Pagination page={page} totalPages={data?.total_pages} onChange={setPage} />}
         </section>
       )}
     </section>

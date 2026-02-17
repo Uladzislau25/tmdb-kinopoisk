@@ -4,6 +4,8 @@ import s from "./Favorites.module.css"
 import { useState } from "react"
 import { Pagination } from "@/common/components/Pagination/Pagination.tsx"
 
+const NO_IMAGE_URL = "https://placehold.co/500x750?text=No+Image"
+
 export const Favorites = () => {
   const favorites = useFavorites()
   const [page, setPage] = useState(1)
@@ -31,7 +33,7 @@ export const Favorites = () => {
                     title: movie.title,
                     poster_path: movie.posterUrl
                       ? movie.posterUrl.replace("https://image.tmdb.org/t/p/w300", "")
-                      : null,
+                      : `${NO_IMAGE_URL}`,
                     vote_average: movie.voteAverage,
                   }}
                   width={220}
