@@ -24,7 +24,7 @@ export const MovieCard = ({ movie, width = 220, height = 330 }: Props) => {
     toggleFavorite({
       id: movie.id,
       title: movie.title,
-      posterUrl: movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : placeholder,
+      posterUrl: posterFullUrl,
       voteAverage: movie.vote_average ?? 0,
     })
   }
@@ -35,15 +35,16 @@ export const MovieCard = ({ movie, width = 220, height = 330 }: Props) => {
     if (rating >= 5) return s.medium
     return s.low
   }
+  const posterFullUrl = movie.poster_path
+    ? movie.poster_path.startsWith("http")
+      ? movie.poster_path
+      : `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : placeholder;
 
   return (
     <Link to={`/movie/${movie.id}`} state={{ from: location }} className={s.wrapper} style={{ width: `${width}px` }}>
       <div className={s.posterWrapper} style={{ height: `${height}px` }}>
-        <img
-          src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : placeholder}
-          alt={movie.title}
-          className={s.poster}
-        />
+        <img src={posterFullUrl} alt={movie.title} className={s.poster} />
 
         <button className={isFavorite ? s.favoriteBtnActive : s.favoriteBtn} onClick={handleFavorite}>
           <span className={isFavorite ? s.heartActive : s.heart}>❤️</span>
