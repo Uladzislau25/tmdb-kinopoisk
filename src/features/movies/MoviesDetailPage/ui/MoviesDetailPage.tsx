@@ -10,6 +10,8 @@ import { MovieCast } from "@/features/movies/MoviesDetailPage/ui/MovieCast/Movie
 import { SimilarMovies } from "@/features/movies/MoviesDetailPage/ui/SimilarMovies/SimilarMovies.tsx"
 import { useEffect } from "react"
 import { Path } from "@/common/routing"
+import { DetailSkeleton } from "@/common/components/DetailSkeleton/DetailSkeleton.tsx"
+
 
 
 export const MoviesDetailPage = () => {
@@ -26,7 +28,8 @@ export const MoviesDetailPage = () => {
       navigate(Path.NotFound, { replace: true })
     }
   }, [isError, movie, navigate])
-
+ if (isLoading) return  (
+   <main className={s.wrapper}><DetailSkeleton/></main>)
 
   if (!movie) return null
   return (
