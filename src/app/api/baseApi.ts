@@ -17,6 +17,6 @@ export const baseApi = createApi({
     }
     return result
   },
-  tagTypes: ['DetailMovie'],
+  tagTypes: ['MainPage', 'CategoryMovies', 'FilteredMovies', 'SearchMovie', 'DetailMovie'],
   endpoints: () => ({}),
 })
