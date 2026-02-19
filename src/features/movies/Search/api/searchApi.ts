@@ -13,6 +13,7 @@ export const searchApi = baseApi.injectEndpoints({
           page,
         },
         ...withZodCatch(PaginatedMoviesSchema),
+        providesTags: ['SearchMovie']
       }),
     }),
   }),

@@ -14,14 +14,17 @@ export const movieDetailApi = baseApi.injectEndpoints({
     getMovieDetailst: build.query<MovieDetail, number>({
       query: (id) => `/movie/${id}`,
       ...withZodCatch(MovieDetailSchema),
+      providesTags: (_result, _error, id)=>[{ type:'DetailMovie', id}]
     }),
     getMovieCredits: build.query<MovieCreditsResponse, number>({
       query: (id) => `/movie/${id}/credits`,
       ...withZodCatch(MovieCreditsResponseSchema),
+      providesTags: (_result, _error, id)=>[{ type:'DetailMovie', id}]
     }),
     getSimilarMovies: build.query<MoviesResponse, number>({
       query: (id) => `/movie/${id}/similar`,
       ...withZodCatch(MoviesResponseSchema),
+      providesTags: (_result, _error, id)=>[{ type:'DetailMovie', id}]
     }),
   }),
 })

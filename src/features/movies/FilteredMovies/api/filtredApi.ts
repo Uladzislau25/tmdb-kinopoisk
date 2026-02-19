@@ -25,11 +25,13 @@ export const filtredApi = baseApi.injectEndpoints({
           ...params,
         },
         ...withZodCatch(PaginatedMoviesSchema),
+        providesTags: ["FilteredMovies"],
       }),
     }),
     getGenres: build.query<GenresResponse, void>({
       query: () => "/genre/movie/list",
       ...withZodCatch(GenresResponseSchema),
+      providesTags: ['FilteredMovies']
     }),
   }),
 })

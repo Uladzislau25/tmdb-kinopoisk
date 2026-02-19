@@ -11,6 +11,7 @@ export const categoryApi = baseApi.injectEndpoints({
           page,
         },
         ...withZodCatch(PaginatedMoviesSchema),
+        providesTags: ['CategoryMovies'],
       }),
     }),
   }),
